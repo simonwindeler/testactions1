@@ -14,16 +14,33 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Log in to Azure
+      uses: azure/login@v1
       with:
-        path: repo
-    - uses: azure/login@v1
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-    - uses: azure/arm-deploy@v1
-      with:
-        resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
-        template: ./deploy/main.bicep
-        parameters: ./deploy/main.bicepparam
+         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+    - name: Deploy Bicep file
+      run: |
+        az deployment group create \
+          --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} \
+          --template-file ./deploy/main.bicep \
+          --parameters ./deploy/main.bicepparam
+    # steps:
+    # - uses: actions/checkout@v3
+    #   with:
+    #     path: repo
+    # - uses: azure/login@v1
+    #   with:
+    #     client-id: ${{ secrets.AZURE_CLIENT_ID }}
+    #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+    #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    # - uses: azure/arm-deploy@v1
+    #   with:
+    #     resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+    #     template: ./deploy/main.bicep
+    #     parameters: ./deploy/main.bicepparam
