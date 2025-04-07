@@ -25,5 +25,4 @@ jobs:
     - uses: azure/arm-deploy@v1
       with:
         resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
-        template: ./deploy/main.bicep
-        parameters: ./deploy/main.bicepparam
+        template: ./deploy/main.bicepparam
