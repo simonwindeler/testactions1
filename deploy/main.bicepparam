@@ -1,6 +1,6 @@
 using 'main.bicep'
 
-param vnetName = ''
+param vnetName = 'vnet-uks-github'
 param addressPrefixes = [
   '10.0.0.1/24'
 ]

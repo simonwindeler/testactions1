@@ -26,4 +26,4 @@ jobs:
       with:
         resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
         template: ./deploy/main.bicep
-        configfilepath: ./deploy/main.bicepparam
+        parameters: ./deploy/main.bicepparam
