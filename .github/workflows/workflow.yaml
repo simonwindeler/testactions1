@@ -1,4 +1,4 @@
-name: deploy-toy-website
+name: deploy-testactions
 
 on: [workflow_dispatch]
 
