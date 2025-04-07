@@ -26,9 +26,7 @@ jobs:
 
     - name: Deploy Bicep file
       run: |
-        az deployment group create \
-          --resource-group ${{ env.AZURE_RESOURCEGROUP_NAME }} \
-          --parameters ./deploy/main.bicepparam
+        az deployment group create --resource-group rg-uks-prod-github --parameters ./deploy/main.bicepparam
     # steps:
     # - uses: actions/checkout@v3
     #   with:
