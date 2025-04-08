@@ -19,18 +19,45 @@ jobs:
       run: az bicep build --file deploy/main.bicep
   validate:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: azure/bicep-deploy@v2
-    - name: Run preflight validation
-      with:
-        type: deployment
-        operation: validate
-        name: Validate
-        location: uksouth
-        scope: subscription
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        template-file: deploy/main.bicep
-        parameters-file: deploy/main.bicepparam
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Azure CLI
+        uses: azure/setup-azure@v2
+        with:
+          azure-cli-version: '2.30.0'
+
+      - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Bicep
+        uses: azure/bicep-deploy@v2
+        with:
+          resource-group: your-resource-group
+          template: ./bicep/main.bicep
+          parameters-file: ./bicep/main.bicepparam
+
+      - name: Logout from Azure
+        run: az logout
+    # runs-on: ubuntu-latest
+    # steps:
+    # - uses: azure/bicep-deploy@v2
+    # - name: Run preflight validation
+    #   with:
+    #     type: deployment
+    #     operation: validate
+    #     name: Validate
+    #     location: uksouth
+    #     scope: subscription
+    #     subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    #     template-file: deploy/main.bicep
+    #     parameters-file: deploy/main.bicepparam
          #  - uses: actions/checkout@v3
   # #  - uses: azure/login@v2
   # validate:
