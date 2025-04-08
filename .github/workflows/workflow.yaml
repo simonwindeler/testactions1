@@ -51,7 +51,7 @@ jobs:
 
       - name: Logout from Azure
         run: az logout
-    whatif:
+  whatif:
     runs-on: ubuntu-latest
 
     steps:
