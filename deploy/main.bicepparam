@@ -1,7 +1,7 @@
 using 'main.bicep'
 
 var subscriptionId = 'd0ed4f4a-58e8-4207-ad1d-cfbf8036326a'
-var addssubnetResourceId = '/subscriptions/${subscriptionId}/resourceGroups/rg-uks-prod-01/providers/Microsoft.Network/virtualNetworks/${vnetName}/subnets/${subnets[0].name}'
+var addssubnetResourceId = '/subscriptions/${subscriptionId}/resourceGroups/rg-uks-prod-github/providers/Microsoft.Network/virtualNetworks/${vnetName}/subnets/${subnets[0].name}'
 
 param vnetName = 'vnet-uks-github'
 param addressPrefixes = [
