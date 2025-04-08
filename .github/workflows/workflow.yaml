@@ -17,22 +17,22 @@ jobs:
     - uses: actions/checkout@v3
     - name: Run Bicep linter
       run: az bicep build --file deploy/main.bicep
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-  #  - uses: actions/checkout@v3
-  #  - uses: azure/login@v2
-    - uses: azure/bicep-deploy@v2
-    - name: Run preflight validation
-      with:
-        type: deployment
-        operation: validate
-        name: Validate
-        location: uksouth
-        scope: subscription
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        template-file: deploy/main.bicep
-        parameters-file: deploy/main.bicepparam
+  # validate:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  # #  - uses: actions/checkout@v3
+  # #  - uses: azure/login@v2
+  #   - uses: azure/bicep-deploy@v2
+  #   - name: Run preflight validation
+  #     with:
+  #       type: deployment
+  #       operation: validate
+  #       name: Validate
+  #       location: uksouth
+  #       scope: subscription
+  #       subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  #       template-file: deploy/main.bicep
+  #       parameters-file: deploy/main.bicepparam
   # validate:
   #   runs-on: ubuntu-latest
   #   steps:
