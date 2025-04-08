@@ -52,10 +52,11 @@ jobs:
           failOnStdErr: false
           resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
           template: deploy/main.bicep
-          parameters: deploy/prod-params.json
+          parameters: deploy/main.bicepparam
           additionalArguments: --what-if
   deploy:
     runs-on: ubuntu-latest
+    needs: [lint, validate, preview]
     steps:
     - name: Checkout repository
       uses: actions/checkout@v3
