@@ -1,3 +1,5 @@
+var adminPassword = 'P@ssword1234!!'
+
 // vNet params
 param vnetName string
 param addressPrefixes array
@@ -25,7 +27,8 @@ module vnet 'br/public:avm/res/network/virtual-network:0.6.1' = {
 module vm 'br/public:avm/res/compute/virtual-machine:0.12.3' = {
   params: {
     name: vmName
-    adminUsername: adminUsername 
+    adminUsername: adminUsername
+    adminPassword: adminPassword
     imageReference: imageReference
     nicConfigurations: nicConfigurations
     osDisk: osDisk
