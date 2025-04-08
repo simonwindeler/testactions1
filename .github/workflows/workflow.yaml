@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - uses: azure/login@v1
+    - uses: azure/login@v2
       name: Sign in to Azure
       with:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
@@ -40,7 +40,7 @@ jobs:
     needs: [lint, validate]
     steps:
       - uses: actions/checkout@v3
-      - uses: azure/login@v1
+      - uses: azure/login@v2
         name: Sign into azure
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
@@ -59,7 +59,7 @@ jobs:
     needs: preview
     steps:
       - uses: actions/checkout@v3
-      - uses: azure/login@v1
+      - uses: azure/login@v2
         name: Sign in to azure
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
@@ -77,7 +77,7 @@ jobs:
     # - uses: actions/checkout@v3
     #   with:
     #     path: repo
-    # - uses: azure/login@v1
+    # - uses: azure/login@v2
     #   with:
     #     client-id: ${{ secrets.AZURE_CLIENT_ID }}
     #     tenant-id: ${{ secrets.AZURE_TENANT_ID }}
