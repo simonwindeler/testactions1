@@ -74,8 +74,8 @@ jobs:
         uses: azure/bicep-deploy@v2
         with:
          type: deployment
-         operation: whatif
-         name: Validate
+         operation: whatIf
+         name: whatIf
          scope: resourceGroup
          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
          deployment-name: ${{ github.run_number }}
