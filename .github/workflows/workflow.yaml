@@ -20,59 +20,84 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: azure/login@v2
-      name: Sign in to Azure
-      with:
-        client-id: ${{ secrets.AZURE_CLIENT_ID }}
-        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
     - uses: azure/bicep-deploy@v2
       name: Run preflight validation
       with:
-        deploymentName: ${{ github.run_number }}
-        resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
-        template: deploy/main.bicep
-        parameters: deploy/main.bicepparam
-        deploymentMode: Validate
-  preview: 
-    runs-on: ubuntu-latest
-    needs: [lint, validate]
-    steps:
-      - uses: actions/checkout@v3
-      - uses: azure/login@v2
-        name: Sign into azure
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      - uses: azure/bicep-deploy@v2
-        name: Run what-if
-        with:
-          failOnStdErr: false
-          resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
-          template: deploy/main.bicep
-          parameters: deploy/main.bicepparam
-          additionalArguments: --what-if
-  deploy:
-    runs-on: ubuntu-latest
-    needs: preview
-    steps:
-      - uses: actions/checkout@v3
-      - uses: azure/login@v2
-        name: Sign in to azure
-        with:
-          client-id: ${{ secrets.AZURE_CLIENT_ID }}
-          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
-          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-      - uses: azure/bicep-deploy@v2
-        name: Deploy vm
-        with:
-          failOnStdError: false
-          deploymentName: ${{ github.run_number }}
-          resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
-          template: deploy/main.bicep
-          paramaters: deploy/main.bicepparam
+        type: deployment
+        operation: validate
+        name: Validate
+        location: uksouth
+        scope: subscription
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+        template-file: ./main.bicep
+        parameters-file: ./main.bicepparam
+  # validate:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #   - uses: actions/checkout@v3
+  #   - uses: azure/login@v2
+  #     name: Sign in to Azure
+  #     with:
+  #       client-id: ${{ secrets.AZURE_CLIENT_ID }}
+  #       tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+  #       subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  #   - uses: azure/bicep-deploy@v2
+  #     name: Run preflight validation
+  #     with:
+  #       deploymentName: ${{ github.run_number }}
+  #       resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+  #       template: deploy/main.bicep
+  #       parameters: deploy/main.bicepparam
+  #       deploymentMode: Validate
+  #       - name: Deployment
+  # uses: azure/bicep-deploy@v2
+  # with:
+  #   type: deployment
+  #   operation: create
+  #   name: Development
+  #   location: westus2
+  #   scope: subscription
+  #   subscription-id: 00000000-0000-0000-0000-000000000000
+  #   template-file: ./main.bicep
+  #   parameters-file: ./main.bicepparam
+  # preview: 
+  #   runs-on: ubuntu-latest
+  #   needs: [lint, validate]
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: azure/login@v2
+  #       name: Sign into azure
+  #       with:
+  #         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+  #         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+  #         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  #     - uses: azure/bicep-deploy@v2
+  #       name: Run what-if
+  #       with:
+  #         failOnStdErr: false
+  #         resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+  #         template: deploy/main.bicep
+  #         parameters: deploy/main.bicepparam
+  #         additionalArguments: --what-if
+  # deploy:
+  #   runs-on: ubuntu-latest
+  #   needs: preview
+  #   steps:
+  #     - uses: actions/checkout@v3
+  #     - uses: azure/login@v2
+  #       name: Sign in to azure
+  #       with:
+  #         client-id: ${{ secrets.AZURE_CLIENT_ID }}
+  #         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+  #         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+  #     - uses: azure/bicep-deploy@v2
+  #       name: Deploy vm
+  #       with:
+  #         failOnStdError: false
+  #         deploymentName: ${{ github.run_number }}
+  #         resourceGroupName: ${{ env.AZURE_RESOURCEGROUP_NAME }}
+  #         template: deploy/main.bicep
+  #         paramaters: deploy/main.bicepparam
     # steps:
     # - uses: actions/checkout@v3
     #   with:
