@@ -42,7 +42,7 @@ jobs:
          type: deployment
          operation: validate
          name: Validate
-         scope: resource-group
+         scope: resourceGroup
          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
          location: uksouth
          deployment-name: ${{ github.run_number }}
