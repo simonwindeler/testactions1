@@ -24,10 +24,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up Azure CLI
-        uses: azure/setup-azure@v2
-        with:
-          azure-cli-version: '2.30.0'
+      # - name: Set up Azure CLI
+      #   uses: azure/setup-azure@v2
+      #   with:
+      #     azure-cli-version: '2.30.0'
 
       - name: Login to Azure
         uses: azure/login@v2
