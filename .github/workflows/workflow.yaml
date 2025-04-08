@@ -42,6 +42,7 @@ jobs:
          type: deployment
          operation: validate
          name: Validate
+         scope: subscription
          resource-group: your-resource-group
          template: ./bicep/main.bicep
          parameters-file: ./bicep/main.bicepparam
