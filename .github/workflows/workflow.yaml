@@ -47,8 +47,8 @@ jobs:
          location: uksouth
          deployment-name: ${{ github.run_number }}
          resource-group: your-resource-group
-         template: ./bicep/main.bicep
-         parameters-file: ./bicep/main.bicepparam
+         template: deploy/main.bicep
+         parameters-file: deploy/main.bicepparam
 
       - name: Logout from Azure
         run: az logout
