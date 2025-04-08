@@ -39,9 +39,12 @@ jobs:
       - name: Deploy Bicep
         uses: azure/bicep-deploy@v2
         with:
-          resource-group: your-resource-group
-          template: ./bicep/main.bicep
-          parameters-file: ./bicep/main.bicepparam
+         type: deployment
+         operation: validate
+         name: Validate
+         resource-group: your-resource-group
+         template: ./bicep/main.bicep
+         parameters-file: ./bicep/main.bicepparam
 
       - name: Logout from Azure
         run: az logout
