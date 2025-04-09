@@ -15,7 +15,7 @@ param subnets = [
 ]
 
 // vm params 
-
+param vmDeploy = false
 param vmName = 'vm-github-test-01'
 param adminUsername = 'azadmin'
 param imageReference = {

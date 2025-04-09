@@ -6,6 +6,7 @@ param addressPrefixes array
 param subnets array
 
 // vm params
+param vmDeploy bool
 param vmName string
 param adminUsername string
 param imageReference object
@@ -29,7 +30,7 @@ module vnet 'br/public:avm/res/network/virtual-network:0.6.1' = {
   }
 }
 
-module vm 'br/public:avm/res/compute/virtual-machine:0.12.3' = {
+module vm 'br/public:avm/res/compute/virtual-machine:0.12.3' = if (vmDeploy) {
   name: 'deploy-${vmName}'
   params: {
     name: vmName
