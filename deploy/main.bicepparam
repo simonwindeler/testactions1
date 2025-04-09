@@ -67,10 +67,10 @@ param schedules = [
   {
     advancedSchedule: {}
     expiryTime: '9999-12-31T13:00'
-    frequency: 'Hour'
-    interval: 12
+    frequency: 'Day'
+    interval: 1
     name: 'TestSchedule'
-    startTime: '03:00'
-    timeZone: 'GMT Standard Time'
+    startTime: '2025-04-10T03:00:00+01:00'
+    timeZone: 'Europe/London'
   }
 ]
