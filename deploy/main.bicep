@@ -50,7 +50,7 @@ module automationaccount 'br/public:avm/res/automation/automation-account:0.1.0'
   name: 'deploy-${automationAccountName}'
   params: {
     name: automationAccountName
-    location: resourceGroup().location
+    location: 'northeurope'
     skuName: 'Basic'    
     managedIdentities: {
       systemAssigned: true
