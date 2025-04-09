@@ -55,13 +55,13 @@ param encryptionAtHost = false
 
 param automationAccountName = 'aa-uks-prod-github'
 param runbooks = [
-  {
-    description: 'Test runbook'
-    name: 'TestRunbook'
-    type: 'PowerShell'
-    uri: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.automation/101-automation/scripts/AzureAutomationTutorial.ps1'
-    version: '1.0.0.0'
-  }
+  // {
+  //   description: 'Test runbook'
+  //   name: 'TestRunbook'
+  //   type: 'PowerShell'
+  //   uri: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.automation/101-automation/scripts/AzureAutomationTutorial.ps1'
+  //   version: '1.0.0.0'
+  // }
 ]
 param schedules = [
   {
