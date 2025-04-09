@@ -53,3 +53,4 @@ param vmSize = 'Standard_B2ms'
 param zone = 0
 param encryptionAtHost = false
 
+param automationAccountName = 'aa-uks-prod-github'
