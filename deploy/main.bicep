@@ -21,6 +21,7 @@ param automationAccountName string
 
 
 module vnet 'br/public:avm/res/network/virtual-network:0.6.1' = {
+  name: 'deploy-${vnetName}'
   params: {
     name: vnetName
     addressPrefixes: addressPrefixes
@@ -29,6 +30,7 @@ module vnet 'br/public:avm/res/network/virtual-network:0.6.1' = {
 }
 
 module vm 'br/public:avm/res/compute/virtual-machine:0.12.3' = {
+  name: 'deploy-${vmName}'
   params: {
     name: vmName
     adminUsername: adminUsername
