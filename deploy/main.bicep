@@ -19,7 +19,8 @@ param encryptionAtHost bool
 
 // automation account params
 param automationAccountName string
-
+param runbooks array
+param schedules array
 
 module vnet 'br/public:avm/res/network/virtual-network:0.6.1' = {
   name: 'deploy-${vnetName}'
@@ -55,5 +56,7 @@ module automationaccount 'br/public:avm/res/automation/automation-account:0.1.0'
     managedIdentities: {
       systemAssigned: true
     }
+    runbooks: runbooks
+    schedules: schedules
   }
 }

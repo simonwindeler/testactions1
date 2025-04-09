@@ -54,3 +54,23 @@ param zone = 0
 param encryptionAtHost = false
 
 param automationAccountName = 'aa-uks-prod-github'
+param runbooks = [
+  {
+    description: 'Test runbook'
+    name: 'TestRunbook'
+    type: 'PowerShell'
+    uri: 'https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/quickstarts/microsoft.automation/101-automation/scripts/AzureAutomationTutorial.ps1'
+    version: '1.0.0.0'
+  }
+]
+param schedules = [
+  {
+    advancedSchedule: {}
+    expiryTime: '9999-12-31T13:00'
+    frequency: 'Hour'
+    interval: 12
+    name: 'TestSchedule'
+    startTime: '03:00'
+    timeZone: 'GMT Standard Time'
+  }
+]
