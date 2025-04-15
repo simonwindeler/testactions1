@@ -16,6 +16,7 @@ param osType string
 param vmSize string
 param zone int
 param encryptionAtHost bool
+param vmTags object
 
 // automation account params
 param automationAccountName string
@@ -44,6 +45,7 @@ module vm 'br/public:avm/res/compute/virtual-machine:0.12.3' = if (vmDeploy) {
     vmSize: vmSize
     zone: zone
     encryptionAtHost: encryptionAtHost
+    tags: vmTags
   }
 }
 

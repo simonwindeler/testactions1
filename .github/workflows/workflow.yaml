@@ -1,7 +1,5 @@
 name: MyWorkflow
 
-on: [workflow_dispatch]
-
 permissions:
   id-token: write
   contents: read
@@ -10,39 +8,11 @@ env:
     AZURE_RESOURCEGROUP_NAME: rg-uks-prod-github
     ENVIRONMENT: test
 
-name: Auto PR on Push
 on:
   push:
     branches:
-      - 'feature/**'
-      - 'bugfix/**'
-jobs:
-  create-pull-request:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pull-requests: write
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: "Auto-created PR from ${{ github.ref_name }}"
-          title: "Auto PR: ${{ github.ref_name }}"
-          body: |
-            Automated pull request created from push to ${{ github.ref_name }}
-            Branch: ${{ github.ref_name }}
-            Triggered by: ${{ github.actor }}
-          branch: ${{ github.ref_name }}
-          base: main
-          labels: |
-            automated-pr
-            needs-review
-
+      - main
+      
 jobs:
   lint:
     runs-on: ubuntu-latest
@@ -52,23 +22,15 @@ jobs:
       run: az bicep build --file deploy/main.bicep
   validate:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
-      # - name: Set up Azure CLI
-      #   uses: azure/setup-azure@v2
-      #   with:
-      #     azure-cli-version: '2.30.0'
-
       - name: Login to Azure
         uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-
       - name: Validate Bicep
         uses: azure/bicep-deploy@v2
         with:
@@ -86,7 +48,6 @@ jobs:
         run: az logout
   whatif:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
