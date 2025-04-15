@@ -52,6 +52,10 @@ param osType = 'Windows'
 param vmSize = 'Standard_B2ms'
 param zone = 0
 param encryptionAtHost = false
+param vmTags = {
+  Environment: 'Production'
+  Department: 'IT'
+}
 
 param automationAccountName = 'aa-uks-prod-github'
 param runbooks = [
