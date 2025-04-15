@@ -55,6 +55,7 @@ param encryptionAtHost = false
 param vmTags = {
   Environment: 'Production'
   Department: 'IT'
+  Owner: 'GitHub'
 }
 
 param automationAccountName = 'aa-uks-prod-github'
