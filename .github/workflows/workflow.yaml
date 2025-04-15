@@ -42,7 +42,6 @@ jobs:
           labels: |
             automated-pr
             needs-review
-
 jobs:
   lint:
     runs-on: ubuntu-latest
