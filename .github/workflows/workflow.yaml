@@ -1,7 +1,5 @@
 name: MyWorkflow
 
-on: [workflow_dispatch]
-
 permissions:
   id-token: write
   contents: read
@@ -10,12 +8,10 @@ env:
     AZURE_RESOURCEGROUP_NAME: rg-uks-prod-github
     ENVIRONMENT: test
 
-name: Auto PR on Push
 on:
   push:
     branches:
-      - 'feature/**'
-      - 'bugfix/**'
+      - '/**'
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
