@@ -8,7 +8,40 @@ permissions:
 
 env:
     AZURE_RESOURCEGROUP_NAME: rg-uks-prod-github
-    ENVIRONMENT: nonprod
+    ENVIRONMENT: test
+
+name: Auto PR on Push
+on:
+  push:
+    branches:
+      - 'feature/**'
+      - 'bugfix/**'
+jobs:
+  create-pull-request:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Auto-created PR from ${{ github.ref_name }}"
+          title: "Auto PR: ${{ github.ref_name }}"
+          body: |
+            Automated pull request created from push to ${{ github.ref_name }}
+            Branch: ${{ github.ref_name }}
+            Triggered by: ${{ github.actor }}
+          branch: ${{ github.ref_name }}
+          base: main
+          labels: |
+            automated-pr
+            needs-review
 
 jobs:
   lint:
