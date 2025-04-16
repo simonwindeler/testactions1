@@ -14,9 +14,6 @@ jobs:
         with:
           destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          permissions:
-            contents: write
-            pull-requests: write
     permissions:
     contents: write
     pull-requests: write
