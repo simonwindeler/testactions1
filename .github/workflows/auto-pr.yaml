@@ -4,6 +4,9 @@ on:
     branches:
       - '**'
 jobs:
+  permissions:
+    contents: write
+    pull-requests: write
   pull-request:
     runs-on: ubuntu-latest
     steps:
@@ -14,4 +17,8 @@ jobs:
         with:
           destination_branch: "main"
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          permissions:
+            contents: write
+            pull-requests: write
+
 
