@@ -15,10 +15,12 @@ name: Deploy Azure Resources
 #         required: true
 #         default: 'test'
 
-on:
-  pull_request:
-    types:
-      - closed
+on: [workflow_dispatch]
+
+# on:
+#   pull_request:
+#     types:
+#       - closed
 
 permissions:
   id-token: write
@@ -89,7 +91,7 @@ jobs:
          resource-group-name: ${{ env.AZURE_RESOURCEGROUP_NAME }}
          template: deploy/main.bicep
          parameters-file: deploy/main.bicepparam
-         
+
   # Deploy Resources
   deploy:
     runs-on: ubuntu-latest
