@@ -92,6 +92,18 @@ jobs:
          template: deploy/main.bicep
          parameters-file: deploy/main.bicepparam
 
+  # Manual Approval to view what-if results
+  approval:
+    runs-on: ubuntu-latest
+    needs: whatif  # Wait for the what-if job to complete
+    steps:
+      # Step 1: Manual Approval
+      - name: Wait for Approval
+        uses: hmarr/auto-approve-action@v2
+        with:
+          message: "Please review the what-if results and approve to proceed."
+          # Add a manual step for human intervention
+  
   # Deploy Resources
   deploy:
     runs-on: ubuntu-latest
