@@ -56,7 +56,7 @@ param vmTags = {
   Environment: 'Production'
   Department: 'IT'
   Owner: 'GitHub'
-  Source: 'Bob'
+  Source: 'Bicep'
 }
 
 param automationAccountName = 'aa-uks-prod-github'
