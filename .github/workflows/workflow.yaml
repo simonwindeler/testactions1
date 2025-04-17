@@ -18,7 +18,7 @@ name: Deploy Azure Resources
 # on: [workflow_dispatch]
 
 on:
-  pull_request:
+  push:
     branches:
       - main
 
