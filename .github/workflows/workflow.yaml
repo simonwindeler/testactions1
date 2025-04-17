@@ -15,12 +15,12 @@ name: Deploy Azure Resources
 #         required: true
 #         default: 'test'
 
-on: [workflow_dispatch]
+# on: [workflow_dispatch]
 
-# on:
-#   pull_request:
-#     types:
-#       - closed
+on:
+  pull_request:
+    types:
+      - closed
 
 permissions:
   id-token: write
