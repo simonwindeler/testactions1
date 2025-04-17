@@ -20,7 +20,7 @@ name: Deploy Azure Resources
 on:
   pull_request:
     branches:
-      - Thursday
+      - main
 
 permissions:
   id-token: write
