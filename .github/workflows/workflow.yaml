@@ -18,9 +18,9 @@ name: Deploy Azure Resources
 # on: [workflow_dispatch]
 
 on:
-  push:
+  pull_request:
     branches:
-      - main
+      - Thursday
 
 permissions:
   id-token: write
