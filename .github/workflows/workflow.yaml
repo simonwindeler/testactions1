@@ -93,19 +93,20 @@ jobs:
          parameters-file: deploy/main.bicepparam
 
   # Manual Approval to view what-if results
-  approval:
-    runs-on: ubuntu-latest
-    needs: whatif  # Wait for the what-if job to complete
-    steps:
-      # Step 1: Manual Approval
-      - name: Wait for Approval
-        run: |
-          echo "Waiting for manual approval..."
-          sleep 300  # Pause for 5 minutes (adjust as needed)
+  # approval:
+  #   runs-on: ubuntu-latest
+  #   needs: whatif  # Wait for the what-if job to complete
+  #   steps:
+  #     # Step 1: Manual Approval
+  #     - name: Wait for Approval
+  #       run: |
+  #         echo "Waiting for manual approval..."
+  #         sleep 300  # Pause for 5 minutes (adjust as needed)
   # Deploy Resources
   deploy:
     runs-on: ubuntu-latest
-    needs: approval  # Wait for the approval job to complete
+    needs: whatif  # Wait for the approval job to complete
+    environment: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
